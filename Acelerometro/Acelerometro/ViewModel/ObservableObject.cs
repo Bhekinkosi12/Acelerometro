@@ -9,11 +9,14 @@ namespace Acelerometro.ViewModel
     {
         protected virtual bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName]string propertyName = "", Action onChanged = null, Func<T, T, bool> validateValue = null)
         {
+        
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;
 
+
             if (validateValue != null && !validateValue(backingStore, value))
                 return false;
+
 
             backingStore = value;
             onChanged?.Invoke();
